@@ -1,0 +1,38 @@
+class Solution {
+    public int primePalindrome(int n) {
+        while(true){
+            if(isPrime(n) && isPalindrome(n)){
+                return n;
+            }
+            if(n>10000000 && n<100000000){
+                n=100000000;
+            }
+            n++;
+        }
+    }
+ 
+    public static boolean isPrime(int num){
+        if(num < 2){
+            return false;
+        }
+        for(int i=2; i*i<=num; i++){
+            if(num % i ==0){
+                return false;
+            }
+            
+        }
+        return true;
+         
+    }
+
+    public static boolean isPalindrome (int num){
+        int reversed=0;
+        int original = num;
+        while(num!=0){
+            reversed = reversed * 10 + num%10;
+            num/=10;
+        }
+        return reversed == original;
+    }
+
+}
