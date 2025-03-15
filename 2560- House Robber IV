@@ -23,7 +23,7 @@ class Solution {
 
         return low;
     }
-    private boolean canRob(int[] nums, int k, int capability) {
+    public boolean canRob(int[] nums, int k, int capability) {
         int count = 0;
         int n = nums.length;
 
