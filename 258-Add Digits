@@ -1,0 +1,22 @@
+class Solution {
+    public int addDigits(int num) {
+        if (num < 10) { // Base case: If num is a single digit, return it
+            return num;
+        } else {
+            return addDigits(checkDigits(num)); // Recursive call to reduce to single digit
+        }
+    }
+
+    public int checkDigits(int num) {
+        int sum = 0;
+        while (num > 0) {
+            sum += num % 10; // Extract last digit and add to sum
+            num /= 10; // Remove last digit
+        }
+        return sum;
+        //if(num == 0){
+        //return 0;
+    //}
+    //return 1 + (num-1)%9;
+    }
+}
