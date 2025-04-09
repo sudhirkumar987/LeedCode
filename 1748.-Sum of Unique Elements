@@ -1,0 +1,24 @@
+class Solution {
+    public int sumOfUnique(int[] nums){
+        HashMap<Integer, Integer> freq= new HashMap<>();
+        for(int i=0; i<nums.length; i++){
+            int key = nums[i];
+            if(freq.containsKey(key)){
+                freq.put(key, freq.get(key)+1);
+            }
+            else{
+                freq.put(key,1);
+            }
+        }
+        int sum = 0;
+        ArrayList<Integer> keys = new ArrayList<>(freq.keySet());
+        for(int i= 0; i<keys.size(); i++){
+            int key = keys.get(i);
+            if(freq.get(key)==1){
+                sum += key;
+            }
+        }
+
+        return sum;
+    }
+}
