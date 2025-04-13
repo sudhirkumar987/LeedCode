@@ -1,0 +1,16 @@
+class Solution {
+    public double minimumAverage(int[] nums) {
+        Arrays.sort(nums);
+
+        int l=0;
+        int e = nums.length-1;
+        double min = Double.MAX_VALUE;
+        while(l<e){
+            double avg = (nums[l] + nums[e]) / 2.0;
+            min = Math.min(avg,min);
+            l++;
+            e--;
+        }
+        return min;
+    }
+}
