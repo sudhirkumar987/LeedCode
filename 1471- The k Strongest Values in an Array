@@ -1,0 +1,23 @@
+class Solution {
+    public int[] getStrongest(int[] arr, int k) {
+        Arrays.sort(arr);
+
+        int []newArray = new int[k];
+        int m = arr[(arr.length - 1)/2]; 
+        int l=0;
+        int r = arr.length-1;
+
+        for(int i=0; i<k; i++){
+            if((Math.abs(arr[r] - m) > Math.abs(arr[l] - m)) ||
+    (Math.abs(arr[r] - m) == Math.abs(arr[l] - m) && arr[r] > arr[l])){
+                newArray[i] = arr[r];
+                r--;
+            }
+            else{
+                newArray[i] = arr[l];
+                l++;
+            }
+        }
+        return newArray;
+    }
+}
