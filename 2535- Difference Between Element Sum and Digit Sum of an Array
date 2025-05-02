@@ -1,0 +1,19 @@
+public class Solution{
+    public int differenceOfSum(int[] nums){
+        int elementSum = 0;
+        int digitSum = 0;
+
+        int i = 0;
+        while(i < nums.length){
+            elementSum += nums[i];
+
+            int temp = nums[i];
+            while(temp > 0){
+                digitSum += temp % 10;
+                temp /= 10;
+            }
+            i++;
+        }
+        return Math.abs(elementSum - digitSum);
+    }
+}
