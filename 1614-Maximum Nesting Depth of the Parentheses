@@ -1,0 +1,16 @@
+class Solution {
+    public int maxDepth(String s) {
+        int maxD = 0;
+        int currDepth = 0;
+        for(int i=0; i<s.length(); i++){
+            if(s.charAt(i) == '('){
+                currDepth +=1;
+                maxD = Math.max(currDepth, maxD);
+            }
+            else if(s.charAt(i)==')'){
+                currDepth -=1;
+            }
+        }
+        return maxD;
+    }
+}
