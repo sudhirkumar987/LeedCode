@@ -1,0 +1,27 @@
+class Solution {
+    public int findLHS(int[] nums) {
+        HashMap <Integer, Integer> freq = new HashMap<>();
+        for(int i=0; i<nums.length; i++){
+            int num = nums[i];
+            if(freq.containsKey(num)){
+                freq.put(num ,freq.get(num)+1);
+            }
+            else{
+                freq.put(num, 1);
+            }
+        }
+        int max = 0;
+        ArrayList<Integer> keys = new ArrayList<>(freq.keySet());
+
+        for(int i=0; i<keys.size(); i++){
+            int key = keys.get(i);
+            if(freq.containsKey(key+1)){
+                int length = freq.get(key) + freq.get(key+1);
+                if(length > max){
+                    max = length;
+                }
+            }
+        }
+        return max;
+    }
+}
