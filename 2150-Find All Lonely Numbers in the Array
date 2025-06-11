@@ -1,0 +1,43 @@
+// class Solution {
+//     public List<Integer> findLonely(int[] nums) {
+//         ArrayList <Integer> result = new ArrayList<>();
+//         int prevNumber = 0;
+//         for(int i=0; i<nums.length; i++){
+//             int checkNum=nums[i];
+//             if(checkLonely(nums,checkNum,checkNum+1,checkNum-1)){
+//                 result.add(checkNum);
+//             }
+//         }
+//         return result;
+//     }
+//     public static boolean checkLonely(int []nums,int curr,int next,int prev){
+//         int count=0;
+//         for(int i=0; i<nums.length; i++){
+//             if(nums[i]==curr){
+//                 count++;
+//             }
+//             if(nums[i]==next || nums[i]==prev){
+//                 return false;
+//             }
+//         }
+//         return count==1;
+//     }
+// }
+
+class Solution {
+    public List<Integer> findLonely(int[] nums){
+        List<Integer> result = new ArrayList<>();
+        int[] freq = new int[1000002];
+
+        for(int i=0; i<nums.length; i++){
+            freq[nums[i]]++;
+        }
+        for(int i=0; i<nums.length; i++){
+            int num=nums[i];
+            if(freq[num] == 1 && (num==0 || freq[num-1] == 0) &&freq[num+1] == 0){
+                result.add(num);
+            }
+        }
+        return result;
+    }
+}
