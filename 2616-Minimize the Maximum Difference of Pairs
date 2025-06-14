@@ -1,0 +1,31 @@
+class Solution {
+    public int minimizeMax(int[] nums, int p) {
+        Arrays.sort(nums);
+        int start=0;
+        int end = nums[nums.length-1]-nums[0];
+        while(start<end){
+            int mid = start+(end-start)/2;
+            if(canMakePairs(nums,p,mid)){
+                end=mid;
+            }
+            else{
+                start=mid+1;
+            }
+        }
+        return start;
+    }
+    public static boolean canMakePairs(int []nums,int p, int maxDiff){
+        int i=0;
+        int count =0;
+        while(i<nums.length-1){
+            if(Math.abs(nums[i]-nums[i+1])<=maxDiff){
+                count++;
+                i=i+2;
+            }
+            else{
+                i=i+1;
+            }
+        }
+        return count>=p;
+    }
+}
