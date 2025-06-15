@@ -1,0 +1,39 @@
+class Solution {
+    public int maxDiff(int num) {
+        String str = Integer.toString(num);
+        char maxN= '-';
+        char minN = '-';
+        for(int i=0; i<str.length(); i++){
+            char c=str.charAt(i);
+            if(c!='9'){
+                maxN = c;
+                break;
+            }
+        }
+        for(int i=0; i<str.length(); i++){
+            char c=str.charAt(i);
+            if(c!='0' && c!='1'){
+                minN = c;
+                break;
+            }
+        }
+
+        String maxNumS =  str;
+        String minNumS = str;
+        if(maxN!='-'){
+           maxNumS = maxNumS.replace(maxN, '9');
+        }
+        if(minN!='-'){
+            if(minNumS.charAt(0)==minN){
+                minNumS = minNumS.replace(minN,'1');
+            }
+            else{
+                minNumS = minNumS.replace(minN, '0');
+            }
+        }
+        int maxNum = Integer.parseInt(maxNumS);
+        int minNum = Integer.parseInt(minNumS);
+        return maxNum-minNum;
+
+    }
+}
