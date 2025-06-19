@@ -1,0 +1,44 @@
+class Solution {
+    public int partitionArray(int[] nums, int k) {
+    //     Arrays.sort(nums);
+    //     int []newArray = new int[nums.length];
+    //     int count=0;
+    //     for(int i=0; i<nums.length; ){
+    //         int index=1;
+    //         newArray[0]=nums[i];
+    //         int j;
+    //         for(j=i+1; j<nums.length; j++){
+    //             newArray[index]=nums[j];
+    //             if(j<nums.length &&checkDiff(newArray,index+1,k)){
+    //                 index++;
+    //             }
+    //             else{
+    //                 break;
+    //             }
+    //         }
+    //         count++;
+    //         Arrays.fill(newArray, 0);
+    //         i=j;
+    //     }
+    //     return count;
+    // }
+    // public boolean checkDiff(int[]newArr,int len, int k){
+    //     int max=newArr[0];
+    //     int min=newArr[0];
+    //     for(int i=1; i<len; i++){
+    //         max = Math.max(max, newArr[i]);            
+    //         min = Math.min(min, newArr[i]);            
+    //     }
+    //     return max-min <=k;
+        Arrays.sort(nums);
+        int st=nums[0];
+        int count=1;
+        for(int i=1; i<nums.length; i++){
+            if(nums[i]-st>k){
+                count++;
+                st=nums[i];
+            }
+        }
+        return count;
+    }
+}
