@@ -1,0 +1,32 @@
+class Solution {
+    public int matchPlayersAndTrainers(int[] players, int[] trainers) {
+        Arrays.sort(players);
+        Arrays.sort(trainers);
+        int maxCount=0;
+        // for(int i=0; i<players.length; i++){
+        //     for(int j=i; j<trainers.length; j++){
+        //         if(players[i]<=trainers[j]){
+        //             maxCount++;
+        //             break;
+        //         }
+        //         else{
+        //             continue;
+        //         }
+        //     }
+        // }
+
+        int i=0;
+        int j=0;
+        while(i<players.length && j<trainers.length){
+            if(players[i]<=trainers[j]){
+                maxCount++;
+                i++;
+                j++;
+            }
+            else{
+                j++;
+            }
+        }
+        return maxCount; 
+    }
+}
