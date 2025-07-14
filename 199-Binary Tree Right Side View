@@ -1,0 +1,15 @@
+public List<Integer> rightSideView(TreeNode root) {
+    ArrayList<Integer> ans = new ArrayList<>();
+    if (root == null) return ans;
+    findRightSide(root, ans, 0);
+    return ans;
+}
+
+public void findRightSide(TreeNode root, ArrayList<Integer> ans, int dpth) {
+    if (root == null) return;
+    if (ans.size() == dpth) {
+        ans.add(root.val);
+    }
+    findRightSide(root.right, ans, dpth + 1);
+    findRightSide(root.left, ans, dpth + 1);
+}
