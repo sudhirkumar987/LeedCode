@@ -1,0 +1,54 @@
+// class Solution {
+//     public int maximumUniqueSubarray(int[] nums) {
+//         int maxSum = 0;
+//         for(int i=0; i<nums.length; i++){
+//             for(int j=i; j<nums.length; j++){
+//                 if(isUnique(i,j,nums)){
+//                     int sum =calcSum(i,j,nums);
+//                     maxSum=Math.max(maxSum,sum);
+//                 }
+//             }
+//         }
+//         return maxSum;
+//     }
+//     public boolean isUnique(int st, int end, int [] nums){
+//         HashSet <Integer> set=new HashSet<>();
+//         for(int i=st; i<=end; i++){
+//             if(set.contains(nums[i])){
+//                 return false;
+//             }
+//             set.add(nums[i]);
+//         }
+//         return true;
+//     }
+//     public int calcSum(int st, int end, int []nums){
+//         int sum=0;
+//         for(int i=st; i<=end; i++){
+//             sum+=nums[i];
+//         }
+//         return sum;
+//     }
+// }
+
+
+class Solution {
+    public int maximumUniqueSubarray(int[] nums) {
+    Set<Integer> set = new HashSet<>();
+    int left=0, right=0;
+    int maxSum=0, currentSum=0;
+
+    while(right < nums.length){
+        while (set.contains(nums[right])){
+            set.remove(nums[left]);
+            currentSum-=nums[left];
+            left++;
+        }
+        set.add(nums[right]);
+        currentSum += nums[right];
+        maxSum = Math.max(maxSum, currentSum);
+        right++;
+    }
+    return maxSum;
+    }
+}
+
