@@ -1,0 +1,44 @@
+class Solution {
+    public int maximumGain(String s, int x, int y) {
+        if(x>y){
+            return getPoints(s,'a','b',x,y);
+        }
+        else{
+            return getPoints(s,'b','a',y,x);
+        }
+    }
+    public int getPoints(String s, char ch1, char ch2, int x, int y){
+        Stack <Character> st = new Stack<>();
+        int score=0;
+        StringBuilder remaining = new StringBuilder();
+        for(int i=0; i<s.length(); i++){
+            char ch = s.charAt(i);
+            if(!st.isEmpty() && st.peek()==ch1 && ch==ch2){
+                st.pop();
+                score+=x;
+            }
+            else{
+                st.push(ch);
+            }
+        }
+
+         while (!st.isEmpty()) {
+            remaining.append(st.pop());
+        }
+        remaining.reverse();
+    
+        Stack <Character> st2 = new Stack<>();
+
+        String remStr = remaining.toString();
+        for (int i = 0; i < remStr.length(); i++) {
+        char ch = remStr.charAt(i);
+        if (!st2.isEmpty() && st2.peek() == ch2 && ch == ch1) {
+            st2.pop();
+            score += y;
+        } else {
+            st2.push(ch);
+            }
+        }
+        return score;
+    }
+}
