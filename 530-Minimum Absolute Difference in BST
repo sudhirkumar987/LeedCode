@@ -1,0 +1,38 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int getMinimumDifference(TreeNode root) {
+        int minDiff = Integer.MAX_VALUE;
+        ArrayList<Integer> list = new ArrayList<>();
+        inOrder(root, list);
+
+        for(int i=0; i<list.size()-1; i++){
+            int diff = list.get(i+1)-list.get(i);
+            minDiff=Math.min(minDiff , diff);
+        }
+        return minDiff;
+    }
+    public void inOrder(TreeNode root, ArrayList<Integer> list){
+        if(root == null){
+            return;
+        }
+        inOrder(root.left, list);
+        list.add(root.val);
+        inOrder(root.right, list);
+
+        return;
+    }
+}
